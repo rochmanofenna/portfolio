@@ -1,0 +1,24 @@
+{
+  "air_id": "agent_air_v1",
+  "alphas_seed": "2343d27061e6d0f18ba660d57a28179f094bbbff8540b2c80bfc6b814909fa8e",
+  "binding_material": "",
+  "commitment": {
+    "num_rows": 8,
+    "row_root": "fd2f128e29f9082eaed1dbb578ede9b06632f74af050024cf6e5dc3c201594b5"
+  },
+  "constraint_verification": {
+    "composition_sum": 0,
+    "num_constraints_checked": 25,
+    "valid": true
+  },
+  "proof_type": "constraint_check",
+  "statement": {
+    "air_id": "agent_air_v1",
+    "final_receipt_hash": "2b78c8a3f71bb0af18d0567ad202cfdf3acc23d2ca8ebfba677f8fbc0bccc3d9",
+    "final_receipt_hi": 16127111893655932952,
+    "final_receipt_lo": 12659649302957160491,
+    "num_actions": 8,
+    "trace_spec_hash": "ee4bcd404f6c62ea2430b1c6318971232feb98caf328486f28c3809337721f38"
+  },
+  "version": "1.0"
+}

@@ -64,24 +64,36 @@ const experience: Job[] = [
   },
 ];
 
-const projects = [
+type Project = {
+  name: string;
+  description: string;
+  link: { href: string; label: string };
+};
+
+const projects: Project[] = [
   {
     name: "CapSeal",
     description:
       "MCP server that gates AI-coding-agent actions against a per-codebase learned risk model, then seals each action into a tamper-evident, SHA-256 hash-chained receipt with a verifying CLI.",
-    href: "/projects/capseal",
+    link: {
+      href: "/projects/capseal",
+      label: "Verify a real receipt in your browser",
+    },
   },
   {
     name: "Sajian",
     description:
       "Multi-tenant restaurant platform: one Next.js app serving many restaurants by subdomain, with AI-generated storefronts and live QR-to-cashier ordering into the ESB point-of-sale.",
-    href: "/projects/sajian",
+    link: { href: "/projects/sajian", label: "Read the writeup" },
   },
   {
     name: "Mindiology",
     description:
-      "Site for my parents' F&B group and cafe. Became the first live tenant on Sajian.",
-    href: "https://github.com/rochmanofenna/mindiology",
+      "iOS ordering and loyalty app for my parents' F&B group in Jakarta, spanning several restaurant brands. Also the first live tenant on Sajian.",
+    link: {
+      href: "/projects/mindiology",
+      label: "See the app",
+    },
   },
 ];
 
@@ -172,13 +184,25 @@ export default function Home() {
           <ul className="mt-4 space-y-8">
             {projects.map((project) => (
               <li key={project.name}>
-                <a
-                  className="font-medium underline underline-offset-4 hover:no-underline"
-                  href={project.href}
-                >
-                  {project.name}
-                </a>
+                <span className="font-medium">{project.name}</span>
                 <p className="mt-2 text-neutral-500">{project.description}</p>
+                <p className="mt-2">
+                  {project.link.href.startsWith("/") ? (
+                    <Link
+                      className="text-[15px] underline underline-offset-4 hover:no-underline"
+                      href={project.link.href}
+                    >
+                      {project.link.label} &rarr;
+                    </Link>
+                  ) : (
+                    <a
+                      className="text-[15px] underline underline-offset-4 hover:no-underline"
+                      href={project.link.href}
+                    >
+                      {project.link.label} &rarr;
+                    </a>
+                  )}
+                </p>
               </li>
             ))}
           </ul>
