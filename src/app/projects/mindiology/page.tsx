@@ -34,6 +34,15 @@ export default function MindiologyPage() {
         location switcher rather than a single menu.
       </p>
 
+      <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[15px]">
+        <a
+          className="underline underline-offset-4 hover:no-underline"
+          href="https://github.com/rochmanofenna/mindiology_coffee"
+        >
+          Source on GitHub &rarr;
+        </a>
+      </p>
+
       <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">
         {screens.map((screen) => (
           <figure key={screen.src}>
@@ -98,8 +107,9 @@ export default function MindiologyPage() {
           Stack
         </h2>
         <p className="mt-3 text-neutral-500">
-          Expo and React Native, shipped as a signed iOS build, with Sentry for
-          crash and error reporting.
+          Expo and React Native with expo-router for file-based navigation,
+          shipped as a signed iOS build, with Sentry for crash and error
+          reporting.
         </p>
         <p className="mt-3 text-[15px] text-neutral-500">
           There&rsquo;s no live demo here for the reason every mobile app has

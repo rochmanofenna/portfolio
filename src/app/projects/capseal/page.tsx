@@ -95,7 +95,7 @@ export default async function CapSealPage() {
       <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[15px]">
         <a
           className="underline underline-offset-4 hover:no-underline"
-          href="https://github.com/rochmanofenna/capseal"
+          href="https://github.com/rochmanofenna/CapsuleTech"
         >
           Source on GitHub &rarr;
         </a>
