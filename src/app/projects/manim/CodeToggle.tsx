@@ -17,7 +17,7 @@ export default function CodeToggle({ code }: { code: string }) {
       </button>
 
       {open && (
-        <pre className="mt-2 max-h-96 overflow-auto border border-neutral-200 bg-neutral-50 p-4 font-mono text-xs leading-relaxed dark:border-neutral-800 dark:bg-neutral-900">
+        <pre className="mt-2 max-h-96 overflow-auto border border-line bg-surface p-4 font-mono text-xs leading-relaxed ">
           <code>{code}</code>
         </pre>
       )}

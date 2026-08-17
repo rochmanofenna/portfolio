@@ -38,10 +38,10 @@ const benchmark = [
 
 export default function RagPage() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-24 text-[18px] leading-relaxed">
+    <main className="mx-auto max-w-[72ch] px-6 py-24 text-[18px] leading-relaxed">
       <Link
         href="/"
-        className="text-[15px] text-neutral-500 underline underline-offset-4 hover:no-underline"
+        className="text-[15px] text-muted underline underline-offset-4 hover:no-underline"
       >
         Ryan Rochmanofenna
       </Link>
@@ -50,7 +50,7 @@ export default function RagPage() {
         Knowledge Graph RAG
       </h1>
 
-      <p className="mt-4 text-lg text-neutral-500">
+      <p className="mt-4 text-lg text-muted">
         An internal assistant that answers questions about a company&rsquo;s own
         documents &mdash; meeting minutes, financial reports, contracts &mdash;
         by reading both the text and the relationships between the entities
@@ -62,14 +62,14 @@ export default function RagPage() {
         alt="Sign-in screen showing a knowledge graph of company entities"
         width={1600}
         height={807}
-        className="mt-8 w-full border border-neutral-200 dark:border-neutral-800"
+        className="mt-8 w-full border border-line"
         priority
       />
 
-      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-neutral-200 py-4 text-[15px] sm:grid-cols-4 dark:border-neutral-800">
+      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-line py-4 text-[15px] sm:grid-cols-4">
         {facts.map((fact) => (
           <div key={fact.label}>
-            <dt className="text-xs uppercase tracking-wide text-neutral-400">
+            <dt className="text-xs uppercase tracking-wide text-subtle">
               {fact.label}
             </dt>
             <dd>{fact.value}</dd>
@@ -80,7 +80,7 @@ export default function RagPage() {
       <div className="mt-16 space-y-12">
         <section>
           <h2 className="font-medium">Getting documents into a graph</h2>
-          <p className="mt-2 text-neutral-500">
+          <p className="mt-2 text-muted">
             Ingestion is a four-stage LangGraph flow: OCR, then named-entity
             recognition, then entity-relation extraction, then graph ingestion.
             A document arrives from S3 as a scan, and leaves as nodes and edges
@@ -89,7 +89,7 @@ export default function RagPage() {
             written five different ways across five documents resolves to one
             node rather than five.
           </p>
-          <p className="mt-3 text-neutral-500">
+          <p className="mt-3 text-muted">
             The stage that decides whether any of this is usable is entity
             resolution. Skip it and the graph technically exists but answers
             nothing, because the entity you asked about is scattered across
@@ -99,7 +99,7 @@ export default function RagPage() {
 
         <section>
           <h2 className="font-medium">Choosing the graph store by measuring</h2>
-          <p className="mt-2 text-neutral-500">
+          <p className="mt-2 text-muted">
             FalkorDB or Neo4j was a real decision, so I benchmarked both on the
             same extracted output rather than arguing from reputation:
           </p>
@@ -107,7 +107,7 @@ export default function RagPage() {
           <div className="mt-4 overflow-x-auto">
             <table className="w-full border-collapse text-[15px]">
               <thead>
-                <tr className="border-b border-neutral-200 text-left dark:border-neutral-800">
+                <tr className="border-b border-line text-left">
                   <th className="py-2 pr-4 font-medium"> </th>
                   <th className="py-2 pr-4 font-medium">FalkorDB</th>
                   <th className="py-2 font-medium">Neo4j</th>
@@ -117,14 +117,14 @@ export default function RagPage() {
                 {benchmark.map((row) => (
                   <tr
                     key={row.metric}
-                    className="border-b border-neutral-100 dark:border-neutral-900"
+                    className="border-b border-line"
                   >
-                    <td className="py-2 pr-4 text-neutral-500">{row.metric}</td>
+                    <td className="py-2 pr-4 text-muted">{row.metric}</td>
                     <td
                       className={`py-2 pr-4 tabular-nums ${
                         row.winner === "falkor"
                           ? "font-medium"
-                          : "text-neutral-500"
+                          : "text-muted"
                       }`}
                     >
                       {row.falkor}
@@ -133,7 +133,7 @@ export default function RagPage() {
                       className={`py-2 tabular-nums ${
                         row.winner === "neo4j"
                           ? "font-medium"
-                          : "text-neutral-500"
+                          : "text-muted"
                       }`}
                     >
                       {row.neo4j}
@@ -144,7 +144,7 @@ export default function RagPage() {
             </table>
           </div>
 
-          <p className="mt-4 text-neutral-500">
+          <p className="mt-4 text-muted">
             Neo4j ingests nodes three times faster. FalkorDB wins relationship
             ingest by 3.2x and one-hop retrieval by 2.4x. This workload is
             relationship-dense &mdash; 171 relationships against 42 nodes for a
@@ -157,7 +157,7 @@ export default function RagPage() {
 
         <section>
           <h2 className="font-medium">Retrieval, and refusing to make things up</h2>
-          <p className="mt-2 text-neutral-500">
+          <p className="mt-2 text-muted">
             A question seeds dense retrieval in Milvus, and those hits expand
             one hop through FalkorDB across shared entity keys &mdash; so an
             answer can pull in a document that never matched the query text but
@@ -165,7 +165,7 @@ export default function RagPage() {
             merged set, with a fallback cascade down to seed-only if graph
             expansion returns nothing useful.
           </p>
-          <p className="mt-3 text-neutral-500">
+          <p className="mt-3 text-muted">
             Every citation then passes three-state validation before the answer
             ships, which exists because the failure that actually matters here
             isn&rsquo;t a wrong answer &mdash; it&rsquo;s a confident answer
@@ -178,9 +178,9 @@ export default function RagPage() {
             alt="Query trace: Milvus text search returning 10 documents in 165ms, then FalkorDB graph expansion returning 50 relations in 47ms, with the resulting subgraph"
             width={1600}
             height={911}
-            className="mt-6 w-full border border-neutral-200 dark:border-neutral-800"
+            className="mt-6 w-full border border-line"
           />
-          <p className="mt-3 text-[15px] text-neutral-500">
+          <p className="mt-3 text-[15px] text-muted">
             The trace is shown to the user, not hidden: which store was hit,
             how many hits came back, how long each took, and the subgraph the
             answer was built from.
@@ -189,7 +189,7 @@ export default function RagPage() {
 
         <section>
           <h2 className="font-medium">Making it fast enough to use</h2>
-          <p className="mt-2 text-neutral-500">
+          <p className="mt-2 text-muted">
             The pipeline started at roughly 30 minutes per document and now runs
             about 4 minutes cold, 10&ndash;15 seconds warm. Most of that came
             from content-addressed caching in Redis &mdash; SHA-256 keyed on
@@ -204,7 +204,7 @@ export default function RagPage() {
 
         <section>
           <h2 className="font-medium">Serving it</h2>
-          <p className="mt-2 text-neutral-500">
+          <p className="mt-2 text-muted">
             A FastAPI service fronts retrieval and answering. Authentication is
             JWT with HS256 over Postgres-backed accounts, with an admin panel
             for dataset and user management. The interface is Indonesian
@@ -213,11 +213,11 @@ export default function RagPage() {
         </section>
       </div>
 
-      <section className="mt-16 border-t border-neutral-200 pt-8 dark:border-neutral-800">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-neutral-400">
+      <section className="mt-16 border-t border-line pt-8">
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-subtle">
           Stack
         </h2>
-        <p className="mt-3 text-neutral-500">
+        <p className="mt-3 text-muted">
           Python, LangGraph, FastAPI, Milvus, FalkorDB, Redis, Postgres, S3,
           Docker. Go for the telemetry collector.
         </p>

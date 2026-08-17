@@ -57,7 +57,7 @@ const experience: Job[] = [
   {
     org: "Olo",
     role: "Software Engineer Intern, Platform",
-    period: "May 2022 — Aug 2022; May 2023 — Jun 2023",
+    period: "Summers 2022, 2023",
     location: "NYC",
     description:
       "Real-time order-tracking backend on AWS Lambda serving 10k+ concurrent sessions at 99.9% uptime.",
@@ -105,7 +105,7 @@ const links = [
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-sm font-semibold uppercase tracking-widest text-neutral-400">
+    <h2 className="text-sm font-semibold uppercase tracking-widest text-subtle">
       {children}
     </h2>
   );
@@ -118,7 +118,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold tracking-tight">
           Ryan Rochmanofenna
         </h1>
-        <p className="mt-3 text-lg text-neutral-500">AI Engineer</p>
+        <p className="mt-3 text-lg text-muted">AI Engineer</p>
 
         <nav className="mt-6 flex gap-4 md:mt-8 md:flex-col md:gap-2">
           {links.map((link) => (
@@ -131,24 +131,21 @@ export default function Home() {
             </a>
           ))}
         </nav>
-      </header>
 
-      <main className="space-y-14">
-        <section>
+        <section className="mt-10">
           <SectionHeading>Education</SectionHeading>
-          <div className="mt-4">
-            <div className="flex items-baseline justify-between gap-4">
-              <span className="font-medium">New York University</span>
-              <span className="shrink-0 text-[15px] text-neutral-500">
-                Sep 2020 — Dec 2025
-              </span>
-            </div>
-            <p className="text-neutral-500">
-              B.A. Computer Science &amp; Mathematics, Minor in Philosophy
+          <div className="mt-3 text-[15px]">
+            <p className="font-medium">New York University</p>
+            <p className="text-muted">
+              B.A. Computer Science &amp; Mathematics
             </p>
+            <p className="text-muted">Minor in Philosophy</p>
+            <p className="mt-1 text-subtle">Sep 2020 — Dec 2025</p>
           </div>
         </section>
+      </header>
 
+      <main className="max-w-[68ch] space-y-14">
         <section>
           <SectionHeading>Experience</SectionHeading>
           <ul className="mt-4 space-y-8">
@@ -156,14 +153,14 @@ export default function Home() {
               <li key={job.org}>
                 <div className="flex items-baseline justify-between gap-4">
                   <span className="font-medium">{job.org}</span>
-                  <span className="shrink-0 text-[15px] text-neutral-500">
+                  <span className="shrink-0 text-[15px] text-muted">
                     {job.period}
                   </span>
                 </div>
-                <p className="text-[15px] text-neutral-500">
+                <p className="text-[15px] text-muted">
                   {job.role} &middot; {job.location}
                 </p>
-                <p className="mt-2 text-neutral-500">{job.description}</p>
+                <p className="mt-2 text-muted">{job.description}</p>
                 {job.demo && (
                   <p className="mt-2">
                     <Link
@@ -185,7 +182,7 @@ export default function Home() {
             {projects.map((project) => (
               <li key={project.name}>
                 <span className="font-medium">{project.name}</span>
-                <p className="mt-2 text-neutral-500">{project.description}</p>
+                <p className="mt-2 text-muted">{project.description}</p>
                 <p className="mt-2">
                   {project.link.href.startsWith("/") ? (
                     <Link
@@ -207,6 +204,17 @@ export default function Home() {
             ))}
           </ul>
         </section>
+
+        <footer className="border-t border-line pt-8 text-[15px] text-muted">
+          Reach me at{" "}
+          <a
+            className="underline underline-offset-4 hover:no-underline"
+            href="mailto:rr3758@nyu.edu"
+          >
+            rr3758@nyu.edu
+          </a>
+          .
+        </footer>
       </main>
     </div>
   );

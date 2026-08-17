@@ -35,17 +35,17 @@ const sections = [
 
 export default function SajianPage() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-24 text-[18px] leading-relaxed">
+    <main className="mx-auto max-w-[72ch] px-6 py-24 text-[18px] leading-relaxed">
       <Link
         href="/"
-        className="text-[15px] text-neutral-500 underline underline-offset-4 hover:no-underline"
+        className="text-[15px] text-muted underline underline-offset-4 hover:no-underline"
       >
         Ryan Rochmanofenna
       </Link>
 
       <h1 className="mt-8 text-4xl font-bold tracking-tight">Sajian</h1>
 
-      <p className="mt-4 text-lg text-neutral-500">
+      <p className="mt-4 text-lg text-muted">
         A multi-tenant restaurant platform for Indonesia. Restaurants get an
         ordering page in about fifteen minutes, keep their full margin, and take
         payment straight to their own bank — no aggregator in the middle.
@@ -71,14 +71,14 @@ export default function SajianPage() {
         alt="The Sajian home page, showing a live Mindiology storefront on a phone"
         width={1600}
         height={807}
-        className="mt-8 w-full border border-neutral-200 dark:border-neutral-800"
+        className="mt-8 w-full border border-line"
         priority
       />
 
-      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-neutral-200 py-4 text-[15px] sm:grid-cols-4 dark:border-neutral-800">
+      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-line py-4 text-[15px] sm:grid-cols-4">
         {facts.map((fact) => (
           <div key={fact.label}>
-            <dt className="text-xs uppercase tracking-wide text-neutral-400">
+            <dt className="text-xs uppercase tracking-wide text-subtle">
               {fact.label}
             </dt>
             <dd>{fact.value}</dd>
@@ -90,16 +90,16 @@ export default function SajianPage() {
         {sections.map((section) => (
           <section key={section.heading}>
             <h2 className="font-medium">{section.heading}</h2>
-            <p className="mt-2 text-neutral-500">{section.body}</p>
+            <p className="mt-2 text-muted">{section.body}</p>
           </section>
         ))}
       </div>
 
-      <section className="mt-16 border-t border-neutral-200 pt-8 dark:border-neutral-800">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-neutral-400">
+      <section className="mt-16 border-t border-line pt-8">
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-subtle">
           Stack
         </h2>
-        <p className="mt-3 text-neutral-500">
+        <p className="mt-3 text-muted">
           Next.js App Router, Supabase (Postgres, Auth, Realtime), TypeScript,
           Tailwind, Zustand for the cart, ESB POS for order routing.
         </p>

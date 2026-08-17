@@ -21,7 +21,7 @@ function formatOffset(ms: number) {
 }
 
 const LEVEL_STYLES: Record<LogEvent["level"], string> = {
-  info: "text-neutral-500",
+  info: "text-muted",
   warn: "text-amber-600 dark:text-amber-500",
   error: "text-red-600 dark:text-red-500",
 };
@@ -89,7 +89,7 @@ export default function LogReplay({
         >
           {idle ? "Replay this run" : running ? "Running…" : "Replay again"}
         </button>
-        <span className="font-mono text-xs tabular-nums text-neutral-500">
+        <span className="font-mono text-xs tabular-nums text-muted">
           {formatOffset(clockMs)}
         </span>
       </div>
@@ -117,14 +117,14 @@ export default function LogReplay({
 
       <ol
         aria-live="polite"
-        className="mt-3 space-y-1 border-l border-neutral-200 pl-4 font-mono text-xs dark:border-neutral-800"
+        className="mt-3 space-y-1 border-l border-line pl-4 font-mono text-xs"
       >
         {events.slice(0, shown).map((event, i) => (
           <li key={i} className="flex gap-3">
-            <span className="w-14 shrink-0 tabular-nums text-neutral-400">
+            <span className="w-14 shrink-0 tabular-nums text-subtle">
               {formatOffset(event.t_ms)}
             </span>
-            <span className="flex w-32 shrink-0 items-center gap-2 text-neutral-400">
+            <span className="flex w-32 shrink-0 items-center gap-2 text-subtle">
               <span
                 aria-hidden
                 className="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
@@ -137,17 +137,17 @@ export default function LogReplay({
         ))}
 
         {idle && (
-          <li className="text-neutral-400">
+          <li className="text-subtle">
             {events.length} events, {(totalMs / 1000).toFixed(1)}s wall time
           </li>
         )}
 
         {running && shown > 0 && shown < events.length && (
-          <li className="text-neutral-400">…</li>
+          <li className="text-subtle">…</li>
         )}
 
         {finished && (
-          <li className="text-neutral-400">
+          <li className="text-subtle">
             done in {(totalMs / 1000).toFixed(1)}s
           </li>
         )}

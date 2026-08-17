@@ -99,7 +99,7 @@ export default function ChainVerifier({
       <div className="flex flex-wrap items-baseline justify-between gap-4">
         <p className="font-mono text-[15px]">
           {results === null ? (
-            <span className="text-neutral-500">verifying…</span>
+            <span className="text-muted">verifying…</span>
           ) : intact ? (
             <span className="text-emerald-600 dark:text-emerald-500">
               chain intact &mdash; {results.length}/{results.length} hashes
@@ -123,7 +123,7 @@ export default function ChainVerifier({
         )}
       </div>
 
-      <p className="mt-2 text-[15px] text-neutral-500">
+      <p className="mt-2 text-[15px] text-muted">
         Hashes are recomputed in your browser with SHA-256. Nothing is sent
         anywhere &mdash; edit a sealed field below and watch the chain break.
       </p>
@@ -139,11 +139,11 @@ export default function ChainVerifier({
               className={`border-l-2 pl-4 ${
                 broken
                   ? "border-red-500"
-                  : "border-neutral-200 dark:border-neutral-800"
+                  : "border-line"
               }`}
             >
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="font-mono text-xs text-neutral-400">
+                <span className="font-mono text-xs text-subtle">
                   {String(i).padStart(2, "0")}
                 </span>
                 <span className="font-mono text-[15px]">
@@ -158,14 +158,14 @@ export default function ChainVerifier({
               </div>
 
               {action.description && (
-                <p className="mt-1 text-[15px] text-neutral-500">
+                <p className="mt-1 text-[15px] text-muted">
                   {action.description}
                 </p>
               )}
 
               <div className="mt-2 font-mono text-xs">
                 <div className="flex flex-wrap gap-x-4 gap-y-1">
-                  <span className="text-neutral-400">
+                  <span className="text-subtle">
                     sealed {short(action.receipt_hash)}
                   </span>
                   <span
@@ -182,7 +182,7 @@ export default function ChainVerifier({
                     <span
                       className={
                         result?.linkOk
-                          ? "text-neutral-400"
+                          ? "text-subtle"
                           : "text-red-600 dark:text-red-500"
                       }
                     >
@@ -220,7 +220,7 @@ export default function ChainVerifier({
         })}
       </ol>
 
-      <p className="mt-6 font-mono text-xs text-neutral-400">
+      <p className="mt-6 font-mono text-xs text-subtle">
         manifest.chain_hash {short(chainHash)}
       </p>
     </div>

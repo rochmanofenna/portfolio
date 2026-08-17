@@ -48,7 +48,7 @@ function formatCents(cents: number) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-xs uppercase tracking-wide text-neutral-400">
+      <dt className="text-xs uppercase tracking-wide text-subtle">
         {label}
       </dt>
       <dd className="tabular-nums">{value}</dd>
@@ -64,10 +64,10 @@ export default async function ManimPage() {
   const totalVideoSeconds = demos.reduce((sum, d) => sum + d.meta.duration_s, 0);
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-24 text-[18px] leading-relaxed">
+    <main className="mx-auto max-w-[72ch] px-6 py-24 text-[18px] leading-relaxed">
       <Link
         href="/"
-        className="text-sm text-neutral-500 underline underline-offset-4 hover:no-underline"
+        className="text-sm text-muted underline underline-offset-4 hover:no-underline"
       >
         Ryan Rochmanofenna
       </Link>
@@ -76,7 +76,7 @@ export default async function ManimPage() {
         Generative Manim
       </h1>
 
-      <p className="mt-4 text-lg text-neutral-500">
+      <p className="mt-4 text-lg text-muted">
         A text prompt becomes a narrated math animation: an LLM writes a Manim
         scene, a sanitizer and pre-flight validator catch what it got wrong, and
         Manim renders the result to video.
@@ -91,7 +91,7 @@ export default async function ManimPage() {
         </a>
       </p>
 
-      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-neutral-200 py-4 text-sm sm:grid-cols-4 dark:border-neutral-800">
+      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-line py-4 text-sm sm:grid-cols-4">
         <Stat label="Runs" value={String(demos.length)} />
         <Stat label="Total cost" value={formatCents(totalCents)} />
         <Stat label="Pipeline time" value={formatWallTime(totalMs)} />
@@ -101,7 +101,7 @@ export default async function ManimPage() {
         />
       </dl>
 
-      <p className="mt-4 text-sm text-neutral-500">
+      <p className="mt-4 text-sm text-muted">
         These are recorded runs, not live generation &mdash; each one costs real
         API tokens and takes minutes. The logs and timestamps below are the real
         ones; only the waiting between events is compressed, so you don&rsquo;t
@@ -120,7 +120,7 @@ export default async function ManimPage() {
                 controls
                 preload="metadata"
                 playsInline
-                className="mt-4 w-full border border-neutral-200 dark:border-neutral-800"
+                className="mt-4 w-full border border-line"
                 src={`/demos/manim/${entry.slug}/out.mp4`}
               />
             </div>
@@ -145,8 +145,8 @@ export default async function ManimPage() {
         ))}
       </div>
 
-      <section className="mt-20 border-t border-neutral-200 pt-8 dark:border-neutral-800">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+      <section className="mt-20 border-t border-line pt-8">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
           What the stages do
         </h2>
 
@@ -161,7 +161,7 @@ export default async function ManimPage() {
                 />
                 {stage}
               </dt>
-              <dd className="mt-1 text-sm text-neutral-500">{description}</dd>
+              <dd className="mt-1 text-sm text-muted">{description}</dd>
             </div>
           ))}
         </dl>

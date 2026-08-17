@@ -75,17 +75,17 @@ export default async function CapSealPage() {
   const gated = actions.filter((a) => a.gate_decision);
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-24 text-[18px] leading-relaxed">
+    <main className="mx-auto max-w-[72ch] px-6 py-24 text-[18px] leading-relaxed">
       <Link
         href="/"
-        className="text-[15px] text-neutral-500 underline underline-offset-4 hover:no-underline"
+        className="text-[15px] text-muted underline underline-offset-4 hover:no-underline"
       >
         Ryan Rochmanofenna
       </Link>
 
       <h1 className="mt-8 text-4xl font-bold tracking-tight">CapSeal</h1>
 
-      <p className="mt-4 text-lg text-neutral-500">
+      <p className="mt-4 text-lg text-muted">
         A trust layer for AI coding agents. It learns which changes fail on your
         codebase, gates risky actions before they run, and seals every action
         into a tamper-evident hash chain &mdash; so what an agent did to your
@@ -103,7 +103,7 @@ export default async function CapSealPage() {
 
       <section className="mt-16">
         <h2 className="font-medium">Verify a real receipt, right here</h2>
-        <p className="mt-2 text-neutral-500">
+        <p className="mt-2 text-muted">
           Below is an actual sealed run &mdash; a{" "}
           <span className="font-mono text-[15px]">{manifest.session_name}</span>{" "}
           session where an agent patched a command-injection bug. Verifying a
@@ -116,7 +116,7 @@ export default async function CapSealPage() {
 
       <section className="mt-16">
         <h2 className="font-medium">What a seal actually covers</h2>
-        <p className="mt-2 text-neutral-500">
+        <p className="mt-2 text-muted">
           Each action hashes a fixed set of canonical fields: its identity, its
           gate decision, its timestamp, its parent&rsquo;s hash, and{" "}
           <em>hashes</em> of the instruction, input, and output &mdash; never
@@ -129,7 +129,7 @@ export default async function CapSealPage() {
 
       <section className="mt-16">
         <h2 className="font-medium">Gating before execution, not after</h2>
-        <p className="mt-2 text-neutral-500">
+        <p className="mt-2 text-muted">
           A receipt proves what happened. The gate decides whether it should
           happen at all. CapSeal learns per-codebase failure rates as Beta
           posteriors over risk features, then scores each proposed action before
@@ -140,7 +140,7 @@ export default async function CapSealPage() {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full border-collapse text-left text-[15px]">
             <thead>
-              <tr className="border-b border-neutral-200 dark:border-neutral-800">
+              <tr className="border-b border-line">
                 <th className="py-2 pr-4 font-medium">Decision</th>
                 <th className="py-2 pr-4 font-medium">Score</th>
                 <th className="py-2 font-medium">Risk features</th>
@@ -150,7 +150,7 @@ export default async function CapSealPage() {
               {gated.slice(0, 3).map((action) => (
                 <tr
                   key={action.action_id}
-                  className="border-b border-neutral-100 dark:border-neutral-900"
+                  className="border-b border-line"
                 >
                   <td className="py-2 pr-4 font-mono text-xs">
                     {action.gate_decision}
@@ -158,7 +158,7 @@ export default async function CapSealPage() {
                   <td className="py-2 pr-4 font-mono tabular-nums">
                     {action.gate_score}
                   </td>
-                  <td className="py-2 font-mono text-xs text-neutral-500">
+                  <td className="py-2 font-mono text-xs text-muted">
                     {action.risk_label}
                   </td>
                 </tr>
@@ -167,7 +167,7 @@ export default async function CapSealPage() {
           </table>
         </div>
 
-        <p className="mt-4 text-[15px] text-neutral-500">
+        <p className="mt-4 text-[15px] text-muted">
           Those risk features are the model&rsquo;s reasoning made legible:
           security-sensitive, single-file, untested. A human sees why something
           was stopped, not just that it was.
@@ -180,14 +180,14 @@ export default async function CapSealPage() {
           controls
           preload="metadata"
           playsInline
-          className="mt-4 w-full border border-neutral-200 dark:border-neutral-800"
+          className="mt-4 w-full border border-line"
           src="/projects/capseal/inspecting-a-receipt.mp4"
         />
       </section>
 
       <section className="mt-16">
         <h2 className="font-medium">Beyond the hash chain</h2>
-        <p className="mt-2 text-neutral-500">
+        <p className="mt-2 text-muted">
           A hash chain proves the log wasn&rsquo;t edited after the fact. It
           doesn&rsquo;t prove the run followed its own rules. For that, CapSeal
           also emits a transparent integrity proof &mdash; no trusted setup,
@@ -197,34 +197,34 @@ export default async function CapSealPage() {
           soundness bounds.
         </p>
 
-        <dl className="mt-4 grid grid-cols-2 gap-4 border-y border-neutral-200 py-4 font-mono text-[15px] sm:grid-cols-4 dark:border-neutral-800">
+        <dl className="mt-4 grid grid-cols-2 gap-4 border-y border-line py-4 font-mono text-[15px] sm:grid-cols-4">
           <div>
-            <dt className="text-xs uppercase tracking-wide text-neutral-400">
+            <dt className="text-xs uppercase tracking-wide text-subtle">
               AIR
             </dt>
             <dd>{proof.air_id}</dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-wide text-neutral-400">
+            <dt className="text-xs uppercase tracking-wide text-subtle">
               Constraints
             </dt>
             <dd>{proof.constraint_verification.num_constraints_checked}</dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-wide text-neutral-400">
+            <dt className="text-xs uppercase tracking-wide text-subtle">
               Trace rows
             </dt>
             <dd>{proof.commitment.num_rows}</dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-wide text-neutral-400">
+            <dt className="text-xs uppercase tracking-wide text-subtle">
               Verified
             </dt>
             <dd>{String(proof.constraint_verification.valid)}</dd>
           </div>
         </dl>
 
-        <p className="mt-4 text-[15px] text-neutral-500">
+        <p className="mt-4 text-[15px] text-muted">
           That part isn&rsquo;t demoed live: proving is far too heavy to run in
           a browser tab, and a verifier for it would be a lot of JavaScript to
           show something most readers can&rsquo;t distinguish from the hash
@@ -232,11 +232,11 @@ export default async function CapSealPage() {
         </p>
       </section>
 
-      <section className="mt-16 border-t border-neutral-200 pt-8 dark:border-neutral-800">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-neutral-400">
+      <section className="mt-16 border-t border-line pt-8">
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-subtle">
           Stack
         </h2>
-        <p className="mt-3 text-neutral-500">
+        <p className="mt-3 text-muted">
           Python, MCP (official SDK), Rust, Semgrep, SHA-256 receipt chains.
           Runs as an MCP server, so any agent that speaks MCP is gated and
           sealed without changing how you work.
