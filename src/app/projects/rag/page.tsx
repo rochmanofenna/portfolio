@@ -188,6 +188,54 @@ export default function RagPage() {
         </section>
 
         <section>
+          <h2 className="font-medium">The two stores, from the inside</h2>
+          <p className="mt-2 text-muted">
+            &ldquo;Cross-store&rdquo; is easy to claim, so here are both halves
+            of it. The graph carries the structure the extraction pipeline
+            found, and the vector index carries the text it was found in.
+          </p>
+
+          <figure className="mt-6">
+            <Image
+              src="/projects/rag/falkordb.webp"
+              alt="FalkorDB browser showing 271 nodes, 802 edges, and the extracted relationship vocabulary"
+              width={1600}
+              height={807}
+              className="w-full border border-line"
+            />
+            <figcaption className="mt-3 text-[15px] text-muted">
+              271 nodes and 802 edges from one corpus. The relationship list on
+              the left is the interesting part &mdash;{" "}
+              <span className="font-mono">REPORTS_ASSET_VALUE</span>,{" "}
+              <span className="font-mono">SUBSIDIARY_OF</span>,{" "}
+              <span className="font-mono">PAID_TAX_AMOUNT</span> &mdash; because
+              nobody wrote that schema. The extraction pipeline produced it from
+              the documents. The property keys tell the rest of the story:{" "}
+              <span className="font-mono">aliases</span> is where entity
+              resolution lands, and{" "}
+              <span className="font-mono">evidence_pages</span> is what makes
+              citations checkable.
+            </figcaption>
+          </figure>
+
+          <figure className="mt-10">
+            <Image
+              src="/projects/rag/milvus.webp"
+              alt="Milvus collection browser showing 359 embedded chunks with their vectors"
+              width={1300}
+              height={1598}
+              className="w-full border border-line"
+            />
+            <figcaption className="mt-3 text-[15px] text-muted">
+              The same corpus as 359 embedded chunks. Retrieval starts here and
+              expands into the graph above through shared entity keys. Document
+              text is cropped out of this view deliberately &mdash; it&rsquo;s
+              the client&rsquo;s.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section>
           <h2 className="font-medium">Making it fast enough to use</h2>
           <p className="mt-2 text-muted">
             The pipeline started at roughly 30 minutes per document and now runs
@@ -210,6 +258,31 @@ export default function RagPage() {
             for dataset and user management. The interface is Indonesian
             throughout, because the people using it work in Indonesian.
           </p>
+          <p className="mt-3 text-muted">
+            Registration doesn&rsquo;t self-approve: a new account is inert
+            until an admin approves it, and every auth event lands in an
+            append-only activity log. In a system whose whole job is answering
+            questions about internal documents, who asked is as much a record as
+            what was answered.
+          </p>
+
+          <figure className="mt-6">
+            <Image
+              src="/projects/rag/postgres.webp"
+              alt="Postgres query output showing the users table with roles, and an activity log of registration, approval, and login events"
+              width={1200}
+              height={1297}
+              className="w-full border border-line"
+            />
+            <figcaption className="mt-3 text-[15px] text-muted">
+              Roles, and the audit trail:{" "}
+              <span className="font-mono">REGISTER</span> &rarr;{" "}
+              <span className="font-mono">APPROVE_USER</span> &rarr;{" "}
+              <span className="font-mono">LOGIN_FAILED</span> &rarr;{" "}
+              <span className="font-mono">LOGIN_SUCCESS</span>. Email addresses
+              and IPs are redacted.
+            </figcaption>
+          </figure>
         </section>
       </div>
 
